@@ -31,9 +31,10 @@ if __name__ == "__main__":
             Uncomment it out when you are using a separate audio
         ts_name: File name of a timestamp file. e.g. timestamp.csb 
     """
-    base = Path('/Users/yukifujishima/OneDrive - Kyushu University/UJA/Interviews')
-    dir_name = 'Yamada'
-    vid_fname = 'yamada_zoom.mp4'
+#   base = Path('/Users/yukifujishima/OneDrive - Kyushu University/UJA/Interviews')
+    base = Path('/Volumes/prune/uja')
+    dir_name = 'Mine'
+    vid_fname = 'mine_zoom.mp4'
 #   aud_fname = 'yamada_zoom.mp3'
     ts_name = 'timestamp.csv'
 
@@ -63,7 +64,9 @@ if __name__ == "__main__":
             aud = audio.subclip(ts['start'].loc[i], ts['end'].loc[i])
             vid.set_audio(aud)
         else:
-            continue
+            pass
+        print('Writing...', ts['start'].loc[i], ts['end'].loc[i],
+              ts['content'].loc[i])
         vid_path = str(clip_dir / str(ts['content'].loc[i] + '.mp4'))
         vid.write_videofile(vid_path,
                             codec='libx264',
